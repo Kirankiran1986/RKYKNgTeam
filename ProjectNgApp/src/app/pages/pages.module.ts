@@ -8,8 +8,6 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UIModule } from '../shared/ui/ui.module';
 import { PagesRoutingModule } from './pages-routing.module';
-import { ListproductComponent } from './listproduct/listproduct.component';
-import { AddproductComponent } from './addproduct/addproduct.component';
 //import { DashboardComponent } from './dashboard/dashboard.component';
 
 //import { WidgetModule } from '../shared/widgets/widget.module';
@@ -18,7 +16,7 @@ import { AddproductComponent } from './addproduct/addproduct.component';
 //import { OtherModule } from './other/other.module';
 
 @NgModule({
-  declarations: [ListproductComponent, AddproductComponent],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,

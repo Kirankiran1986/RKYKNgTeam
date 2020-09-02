@@ -1,0 +1,7 @@
+<!-- vertical layout -->
+<app-vertical *ngIf="isVerticalLayoutRequested()" [layoutWidth]="layoutWidth" [sidebarTheme]="leftSidebarTheme"
+  [sidebarType]="leftSidebarWidth"></app-vertical>
+
+<!-- horizontal layout -->
+<app-horizontal *ngIf="isHorizontalLayoutRequested()" [layoutWidth]="layoutWidth"></app-horizontal>
+

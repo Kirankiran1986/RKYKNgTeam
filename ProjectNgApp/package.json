@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "ag-grid-angular": "^23.2.1",
+    "ag-grid-community": "^23.2.1",
     "bootstrap": "^4.4.1",
     "feather-icons": "^4.28.0",
     "metismenujs": "^1.2.0",

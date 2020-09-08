@@ -21,8 +21,8 @@ export const MENU: MenuItem[] = [
     },
     {
         label: 'Project',
-        icon: 'Project',
-        link: '/listproduct',
+        icon: 'grid',
+        link: '/listproject',
     },
     // {
     //     label: 'Email',

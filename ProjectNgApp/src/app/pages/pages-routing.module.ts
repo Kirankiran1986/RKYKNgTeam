@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ListprojectComponent } from './project/listproject/listproject.component';
+import { AddprojectComponent } from './project/addproject/addproject.component';
 //import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
   //{ path: '', component: DashboardComponent },
-  // { path: 'listproduct', component: ListproductComponent },
-  // { path: 'addproduct', component: AddproductComponent },
+   { path: 'listproject', component: ListprojectComponent },
+   { path: 'addproject', component: AddprojectComponent },
   //{ path: 'ui', loadChildren: () => import('./ui/ui.module').then(m => m.UiModule) },
   //{ path: 'apps', loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule) },
   //{ path: 'other', loadChildren: () => import('./other/other.module').then(m => m.OtherModule) },

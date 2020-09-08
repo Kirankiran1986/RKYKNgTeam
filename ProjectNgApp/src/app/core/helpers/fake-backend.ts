@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '../models/auth.models';
+import { Project } from '../models/project';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -11,6 +12,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         const users: User[] = [
             { id: 1, username: 'admin', email: 'admin@projectng.com', password: 'admin@12', firstName: 'ProjectNg', lastName: 'Admin' }
         ];
+
+        const projects: Project[] = [
+          { Id: 1, Projectname: 'Cx Project', Projecttype: 'Housing', Startdate: new Date(2017,1,1) },
+          { Id: 2, Projectname: 'Berry Project', Projecttype: 'Healthcare', Startdate: new Date(2020,5,1) }
+      ];
 
         const authHeader = request.headers.get('Authorization');
         const isLoggedIn = authHeader && authHeader.startsWith('Bearer fake-jwt-token');
@@ -36,6 +42,24 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.endsWith('/api/users') && request.method === 'GET') {
                 if (!isLoggedIn) { return unauthorised(); }
                 return ok(users);
+            }
+
+            // get all projects
+            if (request.url.endsWith('/api/projects') && request.method === 'GET') {
+              if (!isLoggedIn) { return unauthorised(); }
+              return ok(projects);
+            }
+
+             // add project
+             if (request.url.endsWith('/api/addproject') && request.method === 'POST') {
+              if (!isLoggedIn) { return unauthorised(); }
+
+              return ok({
+                Id: 3,
+                Projectname: 'New Shipping Project',
+                Projecttype: 'Transport',
+                Startdate: new Date(2020,3,1)
+            });
             }
 
             // pass through any requests not handled above

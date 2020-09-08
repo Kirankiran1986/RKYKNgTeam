@@ -11,6 +11,7 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +21,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     HttpClientModule,
     LayoutsModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -30,7 +30,9 @@
             "styles": [
               "src/assets/scss/bootstrap.scss",
               "src/assets/scss/app.scss",
-              "src/assets/scss/icons.scss"
+              "src/assets/scss/icons.scss",
+              "node_modules/ag-grid-community/src/styles/ag-grid.scss",
+              "node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss"
             ],
             "scripts": []
           },

@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-import { User } from '../models/auth.models';
+import { User } from '../models/user.model';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({ providedIn: 'root' })
-export class UserProfileService {
-    constructor(private http: HttpClient) { }
+export class UserService {
 
-    getAll() {
-        return this.http.get<User[]>(`/api/login`);
+    constructor(private firestore: AngularFirestore) { }
+
+    getUsers() {
+        return this.firestore.collection('users').snapshotChanges();
+    }
+
+    createUser(user: User) {
+        return this.firestore.collection('users').add(user);
     }
 }

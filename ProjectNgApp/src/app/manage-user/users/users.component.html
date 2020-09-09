@@ -1,0 +1,123 @@
+<div class="container-fluid">
+  <div class="row page-title align-items-center">
+    <div class="col-md-3 col-xl-6">
+      <h4 class="mb-1 mt-0">Users List</h4>
+    </div>
+    <app-ui-preloader [display]="loading"></app-ui-preloader>
+    <div class="col-md-9 col-xl-6 text-md-right">
+      <div class="mt-4 mt-md-0">
+        <button type="button" class="btn btn-danger mr-4 mb-3  mb-sm-0" (click)="open(content)"><i
+            class="uil-plus mr-1"></i> Create
+          User</button>
+        <div class="btn-group mb-3 mb-sm-0">
+          <button type="button" class="btn btn-primary">All</button>
+        </div>
+        <div class="btn-group ml-1">
+          <button type="button" class="btn btn-white">Active</button>
+        </div>
+        <div class="btn-group ml-2 d-none d-sm-inline-block">
+          <button type="button" class="btn btn-primary btn-sm"><i class="uil uil-apps"></i></button>
+        </div>
+        <div class="btn-group d-none d-sm-inline-block">
+          <button type="button" class="btn btn-white btn-sm"><i class="uil uil-align-left-justify"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" *ngIf="message">
+      <ngb-alert [type]="messageType" [dismissible]="true" (close)="message = ''">{{ message }}</ngb-alert>
+      <br />
+    </div>
+    <div class="col-md-7">
+      <ag-grid-angular #agProjectGrid id="myGrid" style="width: 810px; height: 500px;"
+        class="ag-theme-alpine table table-dark" [rowData]="rowData" [columnDefs]="columnDefs" [pagination]="true"
+        [paginationPageSize]="paginationPageSize">
+      </ag-grid-angular>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-body">
+            <form class="form-horizontal ng-untouched ng-pristine ng-valid" #userForm="ngForm"
+              (ngSubmit)="onSubmit(userForm)">
+              <div class="form-group row mb-3">
+                <label class="col-4 col-form-label" for="inputFirstName">First Name</label>
+                <div class="col-9">
+                  <input class="form-control" required [(ngModel)]="user.firstName" id="inputFirstName"
+                    #inputFirstName="ngModel" name="inputFirstName" placeholder="First Name" type="text">
+                  <div *ngIf="inputFirstName.invalid && (inputFirstName.dirty || inputFirstName.touched)"
+                    class="text text-danger">
+                    <div *ngIf="inputFirstName.errors.required">
+                      First Name is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label class="col-4 col-form-label" for="inputLastName">Last Name</label>
+                <div class="col-9">
+                  <input class="form-control" required id="inputLastName" name="inputLastName" #inputLastName="ngModel"
+                    [(ngModel)]="user.lastName" placeholder="Last Name" type="text">
+                  <div *ngIf="inputLastName.invalid && (inputLastName.dirty || inputLastName.touched)"
+                    class="text text-danger">
+                    <div *ngIf="inputLastName.errors.required">
+                      Last Name is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label class="col-4 col-form-label" for="inputEmail">Email</label>
+                <div class="col-9">
+                  <input class="form-control" id="inputEmail" name="inputEmail" required [(ngModel)]="user.email"
+                    #inputEmail="ngModel" placeholder="Email" type="email" [email]="true">
+                  <div *ngIf="inputEmail.invalid && (inputEmail.dirty || inputEmail.touched)" class="text text-danger">
+                    <div *ngIf="inputEmail.errors.required">
+                      Email is required.
+                    </div>
+                    <div *ngIf="inputEmail.errors.email">
+                      Email is invalid.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label class="col-4 col-form-label" for="inputPassword">Password</label>
+                <div class="col-9">
+                  <input class="form-control" id="inputPassword" name="inputPassword" required #inputPassword="ngModel"
+                    [(ngModel)]="user.password" placeholder="Password" type="password">
+                  <div *ngIf="inputPassword.invalid && (inputPassword.dirty || inputPassword.touched)"
+                    class="text text-danger">
+                    <div *ngIf="inputPassword.errors.required">
+                      Password is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-0 justify-content-end row">
+                <div class="col-6">
+                  <button class="btn btn-info" type="submit" [disabled]="!userForm.valid"
+                    style="margin-right: 15px;">Save</button>
+                  <button class="btn btn-warning" type="reset">Reset</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

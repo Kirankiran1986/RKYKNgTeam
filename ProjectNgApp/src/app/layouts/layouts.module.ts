@@ -14,12 +14,11 @@ import { TopbarComponent } from './shared/topbar/topbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { RightsidebarComponent } from './shared/rightsidebar/rightsidebar.component';
 import { LeftsidebarComponent } from './shared/leftsidebar/leftsidebar.component';
-import { HorizontalComponent } from './horizontal/horizontal.component';
 import { VerticalComponent } from './vertical/vertical.component';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [LayoutComponent, MenuComponent, TopbarComponent, RightsidebarComponent, FooterComponent, LeftsidebarComponent, FooterComponent, HorizontalComponent, VerticalComponent],
+  declarations: [LayoutComponent, MenuComponent, TopbarComponent, RightsidebarComponent, FooterComponent, LeftsidebarComponent, FooterComponent, VerticalComponent],
   imports: [
     CommonModule,
     RouterModule,

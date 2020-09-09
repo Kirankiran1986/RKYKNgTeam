@@ -19,11 +19,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   error = '';
   loading = false;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
-              private authenticationService: AuthenticationService) { }
+  constructor(private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    console.log('login loaded');
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -65,7 +66,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.loading = false;
         },
         error => {
-          this.error = error;
+          this.error = error.error.message;
           this.loading = false;
         });
   }

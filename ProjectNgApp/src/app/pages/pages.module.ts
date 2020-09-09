@@ -8,6 +8,7 @@ import { ListprojectComponent } from './project/listproject/listproject.componen
 import { AgGridModule } from 'ag-grid-angular';
 import { AddprojectComponent } from './project/addproject/addproject.component';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [ListprojectComponent, AddprojectComponent],
@@ -26,6 +27,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
     AgGridModule.withComponents([]),
     ReactiveFormsModule,
     NgbAlertModule,
+    NgbModule
   ]
 })
 export class PagesModule { }

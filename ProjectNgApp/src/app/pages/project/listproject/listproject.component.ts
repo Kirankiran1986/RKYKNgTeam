@@ -25,10 +25,10 @@ export class ListprojectComponent implements OnInit {
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe({
-      next: projects => this.rowData = projects,
-      error: err => this.errorMessage = err
-    });
+    // this.projectService.getProjects().subscribe({
+    //   next: projects => this.rowData = projects,
+    //   error: err => this.errorMessage = err
+    // });
   }
 
 }

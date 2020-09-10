@@ -30,26 +30,26 @@ export class AddprojectComponent implements OnInit {
    * On submit form
    */
   onSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
 
-    // stop here if form is invalid
-    // if (this.projectForm.invalid) {
-    //   return;
-    // }
+    // // stop here if form is invalid
+    // // if (this.projectForm.invalid) {
+    // //   return;
+    // // }
 
-    this.loading = true;
-    this.projectService.addProject().pipe(first())
-    .subscribe(
-      data => {
-        this.router.navigate(['listproject']);
-        this.loading = false;
-      },
-      error => {
-        this.error = error;
-        this.loading = false;
-      });
-    //this.router.navigate(['listproject']);
-    this.loading = false;
+    // this.loading = true;
+    // this.projectService.addProject().pipe(first())
+    // .subscribe(
+    //   data => {
+    //     this.router.navigate(['listproject']);
+    //     this.loading = false;
+    //   },
+    //   error => {
+    //     this.error = error;
+    //     this.loading = false;
+    //   });
+    // //this.router.navigate(['listproject']);
+    // this.loading = false;
   }
 
 }

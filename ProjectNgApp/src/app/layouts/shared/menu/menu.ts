@@ -22,7 +22,7 @@ export const MENU: MenuItem[] = [
     {
         label: 'Project',
         icon: 'grid',
-        link: '/listproject',
+        link: '/manage-project/project-list',
     },
     {
         label: 'Users',

@@ -27,7 +27,7 @@ export class AuthenticationService {
      * @param email email of user
      * @param password password of user
      */
-    login(email: string, password: string) {
+    login(email: string, password: string) {        
         this.userService.getUsers().subscribe(data => {
             this.users = data.map(e => {
                 return {

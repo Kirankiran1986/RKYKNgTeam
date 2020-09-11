@@ -29,11 +29,30 @@
       <ngb-alert [type]="messageType" [dismissible]="true" (close)="message = ''">{{ message }}</ngb-alert>
       <br />
     </div>
-    <div class="col-md-7">
-      <ag-grid-angular #agProjectGrid id="myGrid" style="width: 810px; height: 500px;"
+    <div class="col-md-12">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let item of rowData; index as i">
+          <div>
+            <div class="float-right">
+              <span class="badge badge-pill badge-primary">{{item.status}}</span>
+            </div>
+            <h3>{{i + 1}} <small>{{item.title}}</small></h3>
+          </div>
+          <p class="lead mb-1"> {{item.description}}</p>
+          <div class="float-right">
+            <button class="btn btn-light" style="margin-left:25px" ngbtooltip="Update" placement="top" type="button">
+              <i class="uil uil-envelope-edit"></i>
+            </button>
+            <button class="btn btn-light" ngbtooltip="Delete" placement="top" type="button">
+              <i class="uil uil-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <!-- <ag-grid-angular #agProjectGrid id="myGrid" style="width: 810px; height: 500px;"
         class="ag-theme-alpine table table-dark" [rowData]="rowData" [columnDefs]="columnDefs" [pagination]="true"
         [paginationPageSize]="paginationPageSize">
-      </ag-grid-angular>
+      </ag-grid-angular> -->
     </div>
   </div>
 

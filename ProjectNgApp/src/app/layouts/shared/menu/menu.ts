@@ -29,6 +29,11 @@ export const MENU: MenuItem[] = [
         icon: 'grid',
         link: '/manage-users/users-list',
     },
+    {
+        label: 'Work Items',
+        icon: 'grid',
+        link: '/work-items/Items-list',
+    }
     // {
     //     label: 'Email',
     //     icon: 'inbox',

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserService } from '../../core/services/user.service';
-import { User } from '../../core/models/user.model';
+import { UserService } from 'src/app/core/services/user.service';
+import { User } from 'src/app/core/models/user.model';
 import { AgGridAngular } from 'ag-grid-angular';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
+
+import { ViewActionButtonCellTemplate } from './cell-templates/view-action-button-cell-template';
 
 @Component({
   selector: 'app-users',
@@ -13,15 +13,33 @@ import { NgForm } from '@angular/forms';
 export class UsersComponent implements OnInit {
   @ViewChild('agProjectGrid') agGrid: AgGridAngular;
 
-  constructor(private userService: UserService, private modalService: NgbModal) { }
+  userDataSource: any;
+  paginationPageSize: number = 10;
+  loading = true;
+  frameworkComponents: any;
 
-  columnDefs = [
+  constructor(private userService: UserService) {
+
+    this.frameworkComponents = {
+      viewActionButtonCellTemplate: ViewActionButtonCellTemplate
+    }
+  }
+
+  columns = [
+    {
+      headerName: 'Photo',
+      field: 'photo',
+      cellRenderer: (data) => {
+        if (data && data.value) {
+          return `<img src="${data.value}" style="width: 40px; height: 40px;"/>`;
+        }
+      }
+    },
     {
       headerName: 'Name',
-      field: 'firstName',
+      field: 'userName',
       sortable: true,
-      filter: true,
-      cellRenderer: (data) => { return data.data.firstName + ' ' + data.data.lastName }
+      filter: true
     },
     {
       headerName: 'Email',
@@ -30,92 +48,56 @@ export class UsersComponent implements OnInit {
       filter: true
     },
     {
-      headerName: 'Created Date',
-      field: 'createdDate',
+      headerName: 'Designation',
+      field: 'designation',
       sortable: true,
-      filter: 'agDateColumnFilter',
-      cellRenderer: (data) => { return new Date(data.value.seconds * 1000).toLocaleDateString() }
+      filter: true
+    },
+    {
+      headerName: 'Contact',
+      field: 'contact',
+      sortable: true,
+      filter: true
+    },
+    {
+      headerName: 'Location',
+      field: 'location',
+      sortable: true,
+      filter: true
+    },
+    {
+      headerName: 'Skype',
+      field: 'skype',
+      sortable: true,
+      filter: true
     },
     {
       headerName: '',
-      field: '',
-      cellRenderer: function clickNextRendererFunc() {
-        return `<button class="btn btn-light" style="margin-left:25px" ngbtooltip="Update" placement="top" type="button">
-                    <i class="uil uil-envelope-edit"></i>
-        
-                <button class="btn btn-light" ngbtooltip="Delete" placement="top" type="button">
-                               <i class="uil uil-trash-alt"></i>
-                 </button>                
-                `;
-      }
+      field: 'userid',
+      cellRenderer: 'viewActionButtonCellTemplate',
     }
   ];
 
-  rowData: any;
-  message: string;
-  messageType: string;
-  paginationPageSize: number = 10;
-  closeResult = '';
-  loading = true;
-  user: User = new User();
-
   ngOnInit(): void {
     this.userService.getUsers().subscribe(data => {
-      const users = data.map(e => {
-        return {
-          ...e.payload.doc.data() as User
-        };
-      })
-
-      this.rowData = users.filter(x => x.role != 'admin')
+      data.map(e => {
+        const userList = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as User });
+        if (userList && userList.role.toLowerCase() !== 'admin') {
+          this.userDataSource = [];
+          this.userDataSource.push({
+            userid: userList.uid,
+            userName: userList.firstName + " " + userList.lastName,
+            contact: userList.contact,
+            designation: userList.designation,
+            email: userList.email,
+            location: userList.location,
+            photo: userList.photo,
+            skype: userList.skype
+          });
+        }
+      });
     });
+
     this.loading = false;
   }
-
-  open(content) {
-    this.modalService.open(content, { size: 'lg', ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-  onSubmit(addUserForm: NgForm) {
-    this.loading = true;
-    if (addUserForm && addUserForm.value) {
-      if (!addUserForm.valid) {
-        this.message = 'please enter proper details for user'
-        this.messageType = "error";
-        return
-      }
-      
-      const user: User = {
-        firstName: addUserForm.value.inputFirstName,
-        lastName: addUserForm.value.inputLastName,
-        email: addUserForm.value.inputEmail,
-        isActive: true,
-        password: addUserForm.value.inputPassword,
-        role: 'user',
-        createdDate: new Date(),
-        modifiedDate: new Date()
-      }
-      this.userService.createUser(user);
-      this.loading = false;
-      addUserForm.reset();
-      this.modalService.dismissAll();
-      this.message = 'user added successfully.'
-      this.messageType = "success";
-    }
-  }
-
 }

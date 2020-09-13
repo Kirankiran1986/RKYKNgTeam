@@ -1,0 +1,158 @@
+<!-- main app container -->
+<div class="container-fluid">
+    <div class="row page-title align-items-center">
+        <div class="col-md-3 col-xl-6">
+            <h4 class="mb-1 mt-0">Add New User...</h4>
+        </div>
+        <div class="col-md-9 col-xl-6 text-md-right">
+            <div class="mt-4 mt-md-0">
+                <button type="button" class="btn btn-danger mr-4 mb-3  mb-sm-0" (click)="onReset()" *ngIf="submitted"><i
+                        class="uil-plus mr-1"></i> New User</button>
+
+                <button type="button" class="btn btn-warning mr-4 mb-3  mb-sm-0" (click)="onReset()"
+                    routerLink="/manage-users/users-list"><i class="uil-list-ul mr-1"></i> Users List</button>
+            </div>
+        </div>
+    </div>
+    <app-ui-preloader [display]="loading"></app-ui-preloader>
+    <div class="col-md-8 col-xs-12" *ngIf="message">
+        <ngb-alert [type]="messageType" [dismissible]="true" (close)="message = ''">{{ message }}</ngb-alert>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-xs-12">
+            <div class="card m-3">
+                <div class="card-body">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>First Name</label>
+                                <input type="text" formControlName="firstName" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+                                    [readonly]="submitted || viewMode" />
+                                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label>Last Name</label>
+                                <input type="text" formControlName="lastName" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+                                    [readonly]="submitted || viewMode" />
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Email</label>
+                                <input type="text" formControlName="email" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" [readonly]="submitted || viewMode" />
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                            <div class="form-group col" *ngIf="!userId">
+                                <label>Password</label>
+                                <input type="password" formControlName="password" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                    [readonly]="submitted || viewMode" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Contact No:</label>
+                                <input type="number" formControlName="contact" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
+                                    [readonly]="submitted || viewMode" />
+                                <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contact.errors.required">Contact No. is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label>Skype Detail:</label>
+                                <input type="text" formControlName="skype" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.skype.errors }" [readonly]="submitted || viewMode" />
+                                <div *ngIf="submitted && f.skype.errors" class="invalid-feedback">
+                                    <div *ngIf="f.skype.errors.required">Skype Detail is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label>Work Location</label>
+                                <select formControlName="location" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.location.errors }">
+                                    <option value=""></option>
+                                    <option value="UK">UK</option>
+                                    <option value="Aus">Aus</option>
+                                    <option value="NZ">NZ</option>
+                                    <option value="VAD(IN)">VAD(IN)</option>
+                                </select>
+                                <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                                    <div *ngIf="f.location.errors.required">Location is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-4">
+                                <label>Designation</label>
+                                <select formControlName="designation" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.designation.errors }">
+                                    <option value=""></option>
+                                    <option value="Software Engineer">Software Engineer</option>
+                                    <option value="Senior Software Engineer">Senior Software Engineer</option>
+                                    <option value="Team Lead">Team Lead</option>
+                                    <option value="BA">BA</option>
+                                    <option value="DM">DM</option>
+                                    <option value="Test Analyst">Test Analyst</option>
+                                    <option value="Senior Test Analyst">Senior Test Analyst</option>
+                                    <option value="Product Owner">Product Owner</option>
+                                </select>
+                                <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                                    <div *ngIf="f.designation.errors.required">Designation is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row" *ngIf="!viewMode">
+                            <div class="form-group col-4">
+                                <label>Upload User Photo</label>
+                                <input type="file" formControlName="photo" class="form-control"
+                                    (change)="onFileSelected($event)" autocomplete="off"
+                                    [ngClass]="{ 'is-invalid': submitted && f.photo.errors }" />
+                                <div *ngIf="submitted && f.photo.errors" class="invalid-feedback">
+                                    <div *ngIf="f.photo.errors.required">User Photo is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" formControlName="isActive" id="isActive" class="form-check-input"
+                                [ngClass]="{ 'is-invalid': submitted && f.isActive.errors }"/>
+                            <label for="isActive" class="form-check-label">User Status</label>
+                            <div *ngIf="submitted && f.isActive.errors" class="invalid-feedback">User Status required
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary mr-1" *ngIf="viewMode" (click)="onEdit()">Edit</button>
+                            <button class="btn btn-primary mr-1" *ngIf="!viewMode" [disabled]="submitted  || viewMode">Save</button>
+                            <button class="btn btn-secondary" *ngIf="!viewMode || submitted" type="reset" (click)="onReset()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3 col-xs-12" *ngIf="userPhotoUrl">
+            <div class="card m-3">
+                <h5 class="card-header">User Photo</h5>
+                <div class="card-body">
+                    <img style="margin-left:50px;" id="userPhoto" src="{{userPhotoUrl}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

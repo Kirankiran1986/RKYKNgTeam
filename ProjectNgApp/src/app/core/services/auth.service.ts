@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 import { CookieService } from '../services/cookie.service';
 import { User } from '../models/user.model';
@@ -22,20 +22,21 @@ export class AuthenticationService {
         return this.user;
     }
 
+    fetchUsers(){
+      this.userService.getUsers().subscribe(data => {
+        this.users = data.map(e => {
+            return {
+                ...e.payload.doc.data() as User
+            };
+        })
+      });
+    }
     /**
      * Performs the auth
      * @param email email of user
      * @param password password of user
      */
-    login(email: string, password: string) {        
-        this.userService.getUsers().subscribe(data => {
-            this.users = data.map(e => {
-                return {
-                    ...e.payload.doc.data() as User
-                };
-            })
-        });
-
+    login(email: string, password: string) {
         const user = this.users && this.users.length && this.users.find(x => x.email === email && x.password === password);
         if (!user) { return this.error('Email or password is incorrect'); }
         //login successful if there's a jwt token in the response

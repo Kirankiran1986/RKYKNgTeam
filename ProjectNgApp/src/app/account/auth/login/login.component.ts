@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     // reset login status
     this.authenticationService.logout();
-
+    this.authenticationService.fetchUsers();
     // get return url from route parameters or default to '/'
     // tslint:disable-next-line: no-string-literal
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

@@ -60,7 +60,7 @@ export class AddUserComponent implements OnInit {
           contact: user.contact,
           location: user.location,
           isActive: user.isActive,
-          photo:user.photo
+          photo: user.photo
         });
         this.userPhotoUrl = user.photo;
       });
@@ -107,7 +107,7 @@ export class AddUserComponent implements OnInit {
         });
       }
       else {
-        this.userService.updateUser(user,this.userId);
+        this.userService.updateUser(user, this.userId);
         // display form values on success
         this.messageType = MessageType.SUCCESS;
         this.message = userAddedSuccessMessage;
@@ -117,7 +117,10 @@ export class AddUserComponent implements OnInit {
     this.hideLoading();
   }
 
-  onReset() {
+  onReset(forceRest?: boolean) {
+    if (this.userId && !forceRest) {
+      return false;
+    }
     this.submitted = false;
     this.viewMode = false;
     this.userPhotoUrl = "";

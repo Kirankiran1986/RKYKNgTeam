@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { UIModule } from '../shared/ui/ui.module';
 import { AgGridModule } from 'ag-grid-angular';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule,NgbModule,NgbTypeaheadModule  } from '@ng-bootstrap/ng-bootstrap';
 
 //routing module
 import { ProjectRoutingModule } from './project-routing.module';
 
 //components
 import { ProjectComponent } from './projects/project.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 
 @NgModule({
-    declarations: [ProjectComponent],
+    declarations: [ProjectComponent, ProjectDetailsComponent],
     imports: [
       CommonModule,
       FormsModule,
@@ -22,7 +22,8 @@ import { ProjectComponent } from './projects/project.component';
       ProjectRoutingModule,
       AgGridModule.withComponents([]),
       NgbAlertModule,
-      NgbModule
+      NgbModule,
+      NgbTypeaheadModule
     ]
   })
   export class ProjectModule {}

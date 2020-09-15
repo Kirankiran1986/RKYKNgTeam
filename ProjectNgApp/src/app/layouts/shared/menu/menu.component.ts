@@ -4,8 +4,9 @@ import { Router, NavigationEnd } from '@angular/router';
 import MetisMenu from 'metismenujs/dist/metismenujs';
 
 import { activateMenuItems, resetMenuItems } from './utils';
-import { MENU } from './menu';
+import { AdminMENU, UserMENU } from './menu';
 import { MenuItem } from './menu.model';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -23,7 +24,7 @@ export class MenuComponent implements OnInit, AfterViewInit, OnChanges {
   menuItems = [];
   @ViewChild('sideMenu', { static: false }) sideMenu: ElementRef;
 
-  constructor(router: Router) {
+  constructor(router: Router, private authenticationService: AuthenticationService) {
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         this._activateMenuDropdown();
@@ -92,7 +93,11 @@ export class MenuComponent implements OnInit, AfterViewInit, OnChanges {
    * Initilize
    */
   initialize(): void {
-    this.menuItems = MENU;
+    const currentUser = this.authenticationService.currentUser();
+    if (currentUser.role.toLowerCase() == 'admin')
+      this.menuItems = AdminMENU;
+    else
+      this.menuItems = UserMENU;
   }
 
   /**

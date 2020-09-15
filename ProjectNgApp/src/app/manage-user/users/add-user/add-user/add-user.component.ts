@@ -24,6 +24,7 @@ export class AddUserComponent implements OnInit {
   message: string = '';
   messageType: string = '';
   userId: string;
+  pageTitle: string = 'Add New User...';
 
   constructor(private userService: UserService,
     private formBuilder: FormBuilder, private actRoute: ActivatedRoute) {
@@ -64,6 +65,7 @@ export class AddUserComponent implements OnInit {
         });
         this.userPhotoUrl = user.photo;
       });
+      this.pageTitle = 'Edit User...';
     }
 
     this.hideLoading();

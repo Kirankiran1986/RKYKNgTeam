@@ -4,14 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { UIModule } from '../shared/ui/ui.module';
 import { PagesRoutingModule } from './pages-routing.module';
-import { ListprojectComponent } from './project/listproject/listproject.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { AddprojectComponent } from './project/addproject/addproject.component';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [ListprojectComponent, AddprojectComponent],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,

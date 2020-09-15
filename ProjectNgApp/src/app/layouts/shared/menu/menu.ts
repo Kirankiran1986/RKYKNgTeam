@@ -1,6 +1,6 @@
 import { MenuItem } from './menu.model';
 
-export const MENU: MenuItem[] = [
+export const AdminMENU: MenuItem[] = [
     {
         label: 'Navigation',
         isTitle: true
@@ -52,4 +52,25 @@ export const MENU: MenuItem[] = [
     //         },
     //     ]
     // }
+];
+
+export const UserMENU: MenuItem[] = [
+  {
+      label: 'Navigation',
+      isTitle: true
+  },
+  {
+      label: 'Dashboard',
+      icon: 'home',
+      link: '/'
+  },
+  {
+      label: 'Modules',
+      isTitle: true
+  },
+  {
+      label: 'Work Items',
+      icon: 'grid',
+      link: '/work-items/Items-list',
+  }
 ];

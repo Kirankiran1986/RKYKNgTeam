@@ -20,7 +20,7 @@ export class ViewActionButtonCellTemplate implements ICellRendererAngularComp {
     afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
         throw new Error('Method not implemented.');
     }
-    
+
     params: any;
 
     agInit(params: any): void {

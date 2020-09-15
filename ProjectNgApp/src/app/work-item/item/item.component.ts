@@ -5,6 +5,8 @@ import { WorkItem } from 'src/app/core/models/workitem.model';
 import { AgGridAngular } from 'ag-grid-angular';
 import { NgForm } from '@angular/forms';
 
+import { ViewActionButtonCellTemplate } from './cell-templates/view-action-button-cell-template';
+
 @Component({
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss']
@@ -15,9 +17,9 @@ export class ItemComponent implements OnInit {
   columnDefs = [
     {
       headerName: 'ID',
-      field: '$key',
+      field: 'workItemId',
       sortable: true,
-      filter: true,
+      filter: true
     },
     {
       headerName: 'Title',
@@ -50,28 +52,46 @@ export class ItemComponent implements OnInit {
                  </button>
                 `;
       }
+    },
+    {
+      headerName: '',
+      field: 'workItemId',
+      cellRenderer: 'viewActionButtonCellTemplate',
     }
   ];
 
 
-  rowData: any;
+  WorkItemList: any = [];
   message: string;
   messageType: string;
   paginationPageSize: number = 10;
   closeResult = '';
   loading = true;
   workItem: WorkItem = new WorkItem();
+  frameworkComponents: any;
 
-  constructor(private workItemService: WorkItemService, private modalService: NgbModal) { }
+  constructor(private workItemService: WorkItemService, private modalService: NgbModal) {
+    this.frameworkComponents = {
+      viewActionButtonCellTemplate: ViewActionButtonCellTemplate
+    }
+  }
 
   ngOnInit(): void {
     this.workItemService.getWorkItems().subscribe(data => {
-      this.rowData = data.map(e => {
-        return {
-          ...e.payload.doc.data() as WorkItem
-        };
+      data.map(e => {
+        const workItem = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as WorkItem });
+        // this.rowData = [];
+        this.WorkItemList.push({
+          workItemId: workItem.workItemId,
+          title: workItem.title,
+          description: workItem.description,
+          workItemType: workItem.workItemType,
+          status: workItem.status,
+          createdDate: workItem.createdDate,
+        });
       })
       this.loading = false;
+      this.agGrid.api.setRowData(this.agGrid.rowData);
     });
   }
 
@@ -82,6 +102,27 @@ export class ItemComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
+  editWorkItem(id: string) {
+    console.log(id);
+    let workItem = undefined;
+
+    this.workItemService.getWorkItemsById(id).then(data => {
+      console.log(data);
+    });;
+
+  }
+
+  deleteWorkItem(id: string) {
+    console.log(id);
+    let workItem = undefined;
+
+    this.workItemService.getWorkItemsById(id).then(data => {
+      console.log(data);
+    });;
+
+  }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -102,10 +143,19 @@ export class ItemComponent implements OnInit {
         return
       }
 
+      let tempId: number = 1;
+      if (this.WorkItemList.length > 0) {
+          var ids = this.WorkItemList.map(x => x.workItemId ? x.workItemId : 0);
+          tempId = Math.max(...ids) + 1;
+      } else {
+          tempId = 1;
+      }
+
       const workItem: WorkItem = {
+        workItemId: tempId,
         title: addWorkItemForm.value.inputTitle,
         description: addWorkItemForm.value.inputDescription,
-        status: "Active",
+        status: "New",
         workItemType: addWorkItemForm.value.inputWorkItemType,
         createdDate: new Date(),
         modifiedDate: new Date()

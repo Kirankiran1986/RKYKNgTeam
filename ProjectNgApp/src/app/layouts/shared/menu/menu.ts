@@ -32,7 +32,7 @@ export const AdminMENU: MenuItem[] = [
     {
         label: 'Work Items',
         icon: 'grid',
-        link: '/work-items/Items-list',
+        link: '/work-items/items-list',
     }
     // {
     //     label: 'Email',
@@ -71,6 +71,6 @@ export const UserMENU: MenuItem[] = [
   {
       label: 'Work Items',
       icon: 'grid',
-      link: '/work-items/Items-list',
+      link: '/work-items/items-list',
   }
 ];

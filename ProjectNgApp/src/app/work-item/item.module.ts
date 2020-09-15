@@ -12,9 +12,11 @@ import { ItemRoutingModule } from './item-routing.module';
 
 //components
 import { ItemComponent } from './item/item.component';
+import { ItemDetailsComponent } from './item-details/item-details.component';
+import { ViewActionButtonCellTemplate } from './item/cell-templates/view-action-button-cell-template';
 
 @NgModule({
-  declarations: [ItemComponent],
+  declarations: [ItemComponent, ItemDetailsComponent, ViewActionButtonCellTemplate],
   imports: [
     CommonModule,
     ReactiveFormsModule,

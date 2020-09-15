@@ -11,12 +11,22 @@ export class WorkItemService {
     return this.firestore.collection('workItem').snapshotChanges();
   }
 
+  getWorkItemsById(id: string): Promise<WorkItem> {
+    return this.firestore.collection('WorkItem').doc(id).ref.get().then(function (doc) {
+      if (doc.exists) {
+        console.log("doc");
+        return doc.data() as WorkItem;
+      }
+    })
+  }
+
   createWorkItem(workItem: WorkItem) {
     return this.firestore.collection('workItem').add(workItem);
   }
 
-  // updatePolicy(policy: Policy) {
-  //   delete policy.id;
-  //   this.firestore.doc('policies/' + policy.id).update(policy);
-  // }
+  updateWorkItem(workItem: WorkItem, id: string) {
+    this.firestore.doc('workItem/' + id).update(workItem).then((data) => {
+      console.log(data);
+    })
+  }
 }

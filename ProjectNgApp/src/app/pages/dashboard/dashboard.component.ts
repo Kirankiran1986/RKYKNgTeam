@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
             const workitemList = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as WorkItem });
             // if (projectList &&  projectList.authors.split(',').indexOf(currentUser.) {
               this.workItems.push({
-                $key : workitemList.$key,
+                workItemId : workitemList.workItemId,
                 title : workitemList.title,
                 description : workitemList.description,
                 workItemType: workitemList.workItemType,

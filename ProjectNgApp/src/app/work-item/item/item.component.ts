@@ -42,19 +42,6 @@ export class ItemComponent implements OnInit {
     },
     {
       headerName: '',
-      field: '',
-      cellRenderer: function clickNextRendererFunc() {
-        return `<button class="btn btn-light" style="margin-left:25px" ngbtooltip="Update" placement="top" type="button">
-                    <i class="uil uil-envelope-edit"></i>
-
-                <button class="btn btn-light" ngbtooltip="Delete" placement="top" type="button">
-                               <i class="uil uil-trash-alt"></i>
-                 </button>
-                `;
-      }
-    },
-    {
-      headerName: '',
       field: 'workItemId',
       cellRenderer: 'viewActionButtonCellTemplate',
     }

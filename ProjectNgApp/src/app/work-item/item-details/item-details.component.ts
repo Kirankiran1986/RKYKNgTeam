@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkItemService } from 'src/app/core/services/workitem.service';
 import { WorkItem } from 'src/app/core/models/workitem.model';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-item-details',
@@ -30,4 +31,7 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
+  onSave(addWorkItemForm: NgForm): void {
+
+  }
 }

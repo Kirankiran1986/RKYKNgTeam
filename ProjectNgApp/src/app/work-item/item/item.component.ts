@@ -18,24 +18,35 @@ export class ItemComponent implements OnInit {
     {
       headerName: 'ID',
       field: 'workItemId',
+      width: 100,
       sortable: true,
       filter: true
     },
     {
       headerName: 'Title',
       field: 'title',
+      width: 800,
+      sortable: true,
+      filter: true
+    },
+    {
+      headerName: 'Iteration',
+      field: 'iteration',
+      width: 300,
       sortable: true,
       filter: true
     },
     {
       headerName: 'Status',
       field: 'status',
+      width: 100,
       sortable: true,
       filter: true
     },
     {
       headerName: 'Created Date',
       field: 'createdDate',
+      width: 150,
       sortable: true,
       filter: 'agDateColumnFilter',
       cellRenderer: (data) => { return new Date(data.value.seconds * 1000).toLocaleDateString() }
@@ -51,7 +62,7 @@ export class ItemComponent implements OnInit {
   WorkItemList: any = [];
   message: string;
   messageType: string;
-  paginationPageSize: number = 10;
+  paginationPageSize: number = 25;
   closeResult = '';
   loading = true;
   workItem: WorkItem = new WorkItem();

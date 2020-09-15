@@ -27,9 +27,7 @@ export class UserService {
     }
 
     updateUser(user: User, id: string) {
-        this.firestore.doc('users/' + id).update(user).then((data)=>{
-            console.log(data);
-        })
+        this.firestore.doc('users/' + id).update(user);
     }
 
     uploadPhoto(photo: File): AngularFireUploadTask {

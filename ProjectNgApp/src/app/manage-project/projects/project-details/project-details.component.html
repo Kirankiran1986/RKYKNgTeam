@@ -137,8 +137,9 @@
                         </div>
                         <div class="assign team mt-4">
                             <h6 class="font-weight-bold">Assign To</h6>
-                            <a href="javascript: void(0);" *ngFor="let user of selectedUsers">
-                                <img [alt]="user.username" class="avatar-sm m-1 rounded-circle" [src]="user.photo" ngbTooltip="{{user.username}}">
+                            <a href="javascript: void(0);" *ngFor="let user of project.authors.split(',')">
+                                <img *ngIf="user" [alt]="user" class="avatar-sm m-1 rounded-circle" [src]="getUserPhoto(user)"
+                                    ngbTooltip="{{user}}">
                             </a>
                         </div>
                     </div>
@@ -146,16 +147,25 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <ng-template #rt let-r="result" let-t="term">
-                        <img [src]="r['photo']" class="mr-1" style="width: 25px; height: 30px;">
-                        <ngb-highlight [result]="r.username" [term]="t"></ngb-highlight>
-                    </ng-template>
+                    <div class="row">
+                        <div class="col-sm-8 col-xl-6">
+                            <ng-template #rt let-r="result" let-t="term">
+                                <img [src]="r['photo']" class="mr-1" style="width: 25px; height: 30px;">
+                                <ngb-highlight [result]="r.username" [term]="t"></ngb-highlight>
+                            </ng-template>
 
-                    <label for="typeahead-template">Assign Project to user:</label>
-                    <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="model"
-                        [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"
-                        (blur)="saveUser()" />
-                    {{this.selectedUsers | json}}
+                            <label for="typeahead-template">Assign Project to user:</label>
+                            <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="model"
+                                [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" />
+                                <br/>
+                            <p class="text text-success">{{userMessage}}</p>
+                        </div>
+                        <div class="col-sm-4 col-xl-6">
+                            <div class="btn-group ml-2 d-none d-sm-inline-block">
+                                <button class="btn btn-primary" style="margin-top:28px;" type="button" (click)="saveUser()">
+                                    <i class="uil uil-user-plus mr-1"></i>Add User</button></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -19,7 +19,9 @@ describe('ConfirmComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it("should have as title 'Shreyu'", async(() => {
+     const confirm = fixture.nativeElement;
+     expect(confirm.querySelector('.text-logo').textContent).toEqual('Shreyu');
+    }));
+
 });

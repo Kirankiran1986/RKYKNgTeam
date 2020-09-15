@@ -11,8 +11,12 @@ export class ProjectService {
         return this.firestore.collection('projects').snapshotChanges();
     }
 
-    createProject(user: Project) {
-        return this.firestore.collection('projects').add(user);
+    createProject(project: Project) {
+        return this.firestore.collection('projects').add(project);
+    }
+
+    updateProject(project: Project, id: string) {
+        this.firestore.doc('projects/' + id).update(project);
     }
 }
 

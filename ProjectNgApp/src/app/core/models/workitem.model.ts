@@ -1,5 +1,4 @@
 export class WorkItem {
-  uid?: string;
   workItemId?: number;
   title: string;
   description: string;

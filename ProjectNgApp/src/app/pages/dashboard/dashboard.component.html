@@ -1,0 +1,81 @@
+<div class="container-fluid" *ngIf="this.currentUser.role.toLowerCase() != 'admin'">
+  <div class="row page-title align-items-center">
+    <div class="col-md-3 col-xl-6">
+      <h4 class="mb-1 mt-0">Projects List</h4>
+    </div>
+
+    <app-ui-preloader [display]="loading"></app-ui-preloader>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let data of projects" class="col-xl-4 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="badge badge-success float-right" ngbTooltip="Status" placement="top">
+            {{data.status}}</div>
+          <h5>
+            <div class="first-letter">{{data.name.charAt(0).toUpperCase()}}</div>
+            <a class="text-dark" style="margin-left: 12px;" href="javascript: void(0)" [routerLink]="['/manage-project/project-details', data.id]" ngbTooltip="Project Name"
+              placement="top">{{data.name}}</a>
+          </h5>
+          <p class="text-muted mt-20 mb-4">{{data.description | slice:0:85}}</p>
+          <hr />
+          <div class="tags">
+            <h6 class="header-title">languages</h6>
+            <div class="text-uppercase">
+              <a *ngFor="let lang of data.languages.split(',')" class="badge badge-soft-primary mr-2"
+                href="javascript: void(0);">
+                {{lang}}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body border-top">
+          <div class="row align-items-center">
+            <div class="col-sm-auto">
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item pr-2">
+                  <a class="text-muted d-inline-block" href="javascript: void(0)" ngbTooltip="Start Date"
+                    placement="top">
+                    <i class="uil uil-calender mr-1"></i>
+                    {{data.startDate.toDate() | date:'dd-MMM'}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row page-title align-items-center">
+    <div class="col-md-3 col-xl-6">
+      <h4 class="mb-1 mt-0">Work Items</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let item of workItems; index as i">
+          <div>
+            <div class="float-right">
+              <span class="badge badge-pill badge-primary">{{item.status}}</span>
+            </div>
+            <h3>{{i + 1}} <small>{{item.title}}</small></h3>
+          </div>
+          <p class="lead mb-1"> {{item.description}}</p>
+          <div class="float-right">
+            <button class="btn btn-light" style="margin-left:25px" ngbtooltip="Update" placement="top" type="button">
+              <i class="uil uil-envelope-edit"></i>
+            </button>
+            <button class="btn btn-light" ngbtooltip="Delete" placement="top" type="button">
+              <i class="uil uil-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

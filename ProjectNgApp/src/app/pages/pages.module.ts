@@ -7,9 +7,10 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     FormsModule,

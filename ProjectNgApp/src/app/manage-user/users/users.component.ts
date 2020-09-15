@@ -79,11 +79,11 @@ export class UsersComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.userDataSource = [];
     this.userService.getUsers().subscribe(data => {
       data.map(e => {
         const userList = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as User });
         if (userList && userList.role.toLowerCase() !== 'admin') {
-          this.userDataSource = [];
           this.userDataSource.push({
             userid: userList.uid,
             userName: userList.firstName + " " + userList.lastName,
@@ -94,10 +94,13 @@ export class UsersComponent implements OnInit {
             photo: userList.photo,
             skype: userList.skype
           });
+
+          this.loading = false;
+          this.agGrid.api.setRowData(this.agGrid.rowData);
         }
       });
     });
 
-    this.loading = false;
+    this.loading = true;
   }
 }

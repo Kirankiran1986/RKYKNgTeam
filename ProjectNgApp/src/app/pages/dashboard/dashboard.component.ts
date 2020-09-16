@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
         this.projectService.getProjects().subscribe(data => {
           data.map(e => {
             const projectList = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as Project });
-            // if (projectList &&  projectList.authors.split(',').indexOf(currentUser.) {
+            if (projectList &&  projectList.authors.split(',').indexOf(this.currentUser.firstName + ' ' + this.currentUser.lastName) >= 0) {
               this.projects.push({
                 id: projectList.id,
                 name: projectList.name,
@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
                 createdDate: projectList.createdDate,
                 modifiedDate: projectList.modifiedDate
               });
-
+            }
               this.loading = false;
             });
         });

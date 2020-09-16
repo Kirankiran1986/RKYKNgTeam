@@ -75,6 +75,7 @@ export class ItemDetailsComponent implements OnInit {
           description: workItem.description,
           status: workItem.status,
           iteration: workItem.iteration,
+          priority: workItem.priority,
           workItemType: workItem.workItemType,
           originalEstimate: workItem.originalEstimate,
           remainingHours: workItem.remainingHours,

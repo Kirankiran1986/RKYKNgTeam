@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../../core/services/auth.service';
 import { Notification } from './topbar.model';
 
 import { notificationItems } from './data';
+import { User } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-topbar',
@@ -30,13 +31,18 @@ export class TopbarComponent implements OnInit {
 
   @Output() settingsButtonClicked = new EventEmitter();
   @Output() mobileMenuButtonClicked = new EventEmitter();
-
+  userName: string;
   constructor(private router: Router, private authService: AuthenticationService) {}
 
   ngOnInit() {
     // get the notifications
     this._fetchNotifications();
     this.openMobileMenu = false;
+    const currentUser = this.authService.currentUser();
+    if(currentUser.role.toLowerCase() == 'admin')
+      this.userName = 'Administrator';
+    else
+      this.userName = currentUser.firstName + ' ' + currentUser.lastName;
   }
 
   /**

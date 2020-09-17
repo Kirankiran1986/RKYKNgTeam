@@ -87,8 +87,8 @@
         </ngb-tabset>
       </div>
     </div>
-    <ng-template #loggedOut style="width:50%">
-      <div class="col-md-12 chart-wrapper">
+    <ng-template #loggedOut >
+      <div class="col-md-6 chart-wrapper">
         <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
           [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
           [plugins]="lineChartPlugins">

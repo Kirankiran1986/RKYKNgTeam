@@ -73,13 +73,13 @@ export class ProjectDetailsComponent implements OnInit {
 
   saveUser() {
     if (this.model) {
+      this.selectedUsers = [];
       this.selectedUsers.push(this.model);
       this.selectedUsers.filter((x) => {
         if (x) {
           this.project.authors += x.username + ",";
         }
       });
-      this.project.authors
       this.updateProjectInfo();
     }
   }

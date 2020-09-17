@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/c39511f3-12d9-4600-afd6-6b80fa4bca70/resourceGroups/RKYKGroup/providers/Microsoft.Web/sites/ProjectNgAngular",
+    "appService.deploySubpath": "ProjectNgApp\\dist\\ProjectNgApp"
+}

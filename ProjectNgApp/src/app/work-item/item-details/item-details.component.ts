@@ -56,7 +56,6 @@ export class ItemDetailsComponent implements OnInit {
 
     if (this.workItemId) {
       this.workItemService.getWorkItemsById(this.workItemId).then((workItem) => {
-        console.log(workItem);
         this.workItemForm.patchValue({
           workItemId: workItem.workItemId,
           title: workItem.title,

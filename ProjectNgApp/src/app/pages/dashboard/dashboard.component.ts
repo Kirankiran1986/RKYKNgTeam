@@ -50,9 +50,10 @@ export class DashboardComponent implements OnInit {
         });
 
         this.workItemService.getWorkItems().subscribe(data => {
+          this.workItems = [];
           data.map(e => {
             const workitemList = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as WorkItem });
-            // if (projectList &&  projectList.authors.split(',').indexOf(currentUser.) {
+             if (workitemList &&  workitemList.userName.indexOf(this.currentUser.firstName + ' ' + this.currentUser.lastName) >= 0) {
               this.workItems.push({
                 workItemId : workitemList.workItemId,
                 title : workitemList.title,
@@ -60,8 +61,10 @@ export class DashboardComponent implements OnInit {
                 workItemType: workitemList.workItemType,
                 status : workitemList.status,
                 createdDate: workitemList.createdDate,
-                modifiedDate: workitemList.modifiedDate
+                modifiedDate: workitemList.modifiedDate,
+
               });
+            }
           })
           this.loading = false;
         });

@@ -112,7 +112,7 @@ export class ItemDetailsComponent implements OnInit {
         workItemData.description = this.workItemForm.controls.description.value;
         workItemData.status = this.workItemForm.controls.status.value;
         workItemData.iteration = this.workItemForm.controls.iteration.value;
-        workItemData.userName = this.workItemForm.controls.userName.value;
+        workItemData.userName = this.workItemForm.controls.userName.value.username;
         workItemData.priority = this.workItemForm.controls.priority.value;
         workItemData.originalEstimate = this.workItemForm.controls.originalEstimate.value;
         workItemData.remainingHours = this.workItemForm.controls.remainingHours.value;

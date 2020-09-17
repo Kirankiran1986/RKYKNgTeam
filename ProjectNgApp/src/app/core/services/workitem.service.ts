@@ -27,9 +27,7 @@ export class WorkItemService {
   }
 
   updateWorkItem(workItem: WorkItem, id: string) {
-    this.firestore.doc('workItem/' + id).update(workItem).then((data) => {
-      console.log(data);
-    })
+    this.firestore.doc('workItem/' + id).update(workItem);
   }
 
   uploadFile(file: File): AngularFireUploadTask {

@@ -8,6 +8,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -15,18 +16,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommonModule,
     FormsModule,
     NgbDropdownModule,
-    //NgApexchartsModule,
-    //FlatpickrModule.forRoot(),
     UIModule,
-    //WidgetModule,
     PagesRoutingModule,
-    //UiModule,
-    //AppsModule,
-    //OtherModule
     AgGridModule.withComponents([]),
     ReactiveFormsModule,
     NgbAlertModule,
-    NgbModule
+    NgbModule,
+    ChartsModule
   ]
 })
 export class PagesModule { }

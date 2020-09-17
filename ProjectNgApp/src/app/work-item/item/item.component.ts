@@ -25,7 +25,7 @@ export class ItemComponent implements OnInit {
     {
       headerName: 'Title',
       field: 'title',
-      width: 800,
+      width: 660,
       sortable: true,
       filter: true
     },
@@ -39,14 +39,14 @@ export class ItemComponent implements OnInit {
     {
       headerName: 'Status',
       field: 'status',
-      width: 100,
+      width: 150,
       sortable: true,
       filter: true
     },
     {
       headerName: 'Created Date',
       field: 'createdDate',
-      width: 150,
+      width: 200,
       sortable: true,
       filter: 'agDateColumnFilter',
       cellRenderer: (data) => { return new Date(data.value.seconds * 1000).toLocaleDateString() }
@@ -84,6 +84,7 @@ export class ItemComponent implements OnInit {
           workItemId: workItem.workItemId,
           title: workItem.title,
           description: workItem.description,
+          iteration: workItem.iteration,
           workItemType: workItem.workItemType,
           status: workItem.status,
           createdDate: workItem.createdDate,

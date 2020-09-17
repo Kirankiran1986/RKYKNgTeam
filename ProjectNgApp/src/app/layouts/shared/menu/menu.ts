@@ -21,17 +21,17 @@ export const AdminMENU: MenuItem[] = [
     },
     {
         label: 'Project',
-        icon: 'grid',
+        icon: 'briefcase',
         link: '/manage-project/project-list',
     },
     {
         label: 'Users',
-        icon: 'grid',
+        icon: 'users',
         link: '/manage-users/users-list',
     },
     {
         label: 'Work Items',
-        icon: 'grid',
+        icon: 'bookmark',
         link: '/work-items/items-list',
     }
     // {

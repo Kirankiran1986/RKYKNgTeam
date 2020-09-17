@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row page-title align-items-center">
     <div class="col-md-3 col-xl-6">
-      <h4 class="mb-1 mt-0">Work Items</h4>
+      <h4 class="mb-1 mt-0"><i data-feather="bookmark"></i> <span> Work Items</span></h4>
     </div>
     <app-ui-preloader [display]="loading"></app-ui-preloader>
     <div class="col-md-9 col-xl-6 text-md-right">
@@ -18,7 +18,7 @@
       <br />
     </div>
     <div class="col-md-12">
-      <ag-grid-angular #agProjectGrid id="myGrid" style="height: 1000px;" class="ag-theme-alpine table table-dark"
+      <ag-grid-angular #agProjectGrid id="myGrid" style="height: 700px;" class="ag-theme-alpine table table-dark"
         [rowData]="WorkItemList" [columnDefs]="columnDefs" [pagination]="true" [paginationPageSize]="paginationPageSize"
         [frameworkComponents]="frameworkComponents">
       </ag-grid-angular>

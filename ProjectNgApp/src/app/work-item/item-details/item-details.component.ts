@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { WorkItemService } from 'src/app/core/services/workitem.service';
 import { WorkItem } from 'src/app/core/models/workitem.model';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize, debounceTime, map } from 'rxjs/operators';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/internal/Observable';
@@ -53,18 +53,6 @@ export class ItemDetailsComponent implements OnInit {
         }
       });
     });
-
-    // this.workItemService.getWorkItems().subscribe(data => {
-    //   data.map(e => {
-    //     const workItems = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as WorkItem });
-    //     if (workItems) {
-    //       this.workItemList.push(workItems);
-    //     }
-    //   });
-
-    //   this.workItem = this.workItemList.find(x => x.workItemId === this.workItemId);
-    // });
-
 
     if (this.workItemId) {
       this.workItemService.getWorkItemsById(this.workItemId).then((workItem) => {

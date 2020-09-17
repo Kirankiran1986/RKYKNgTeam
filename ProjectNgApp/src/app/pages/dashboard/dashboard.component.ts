@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   loading = true;
   projects:Project[] = [];
   project: Project = new Project();
-  workItems: WorkItem[] = [];
+  workItems: any = [];
   currentUser: User;
 
   ngOnInit(): void {

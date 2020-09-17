@@ -13,7 +13,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6" *ngIf="message">
+    <div class="col-md-12" *ngIf="message">
       <ngb-alert [type]="messageType" [dismissible]="true" (close)="message = ''">{{ message }}</ngb-alert>
       <br />
     </div>

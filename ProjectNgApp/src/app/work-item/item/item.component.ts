@@ -53,7 +53,7 @@ export class ItemComponent implements OnInit {
     },
     {
       headerName: '',
-      field: 'workItemId',
+      field: 'uid',
       cellRenderer: 'viewActionButtonCellTemplate',
     }
   ];
@@ -79,8 +79,8 @@ export class ItemComponent implements OnInit {
       this.WorkItemList = [];
       data.map(e => {
         const workItem = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as WorkItem });
-        // this.rowData = [];
         this.WorkItemList.push({
+          uid:  workItem.uid,
           workItemId: workItem.workItemId,
           title: workItem.title,
           description: workItem.description,
@@ -90,7 +90,6 @@ export class ItemComponent implements OnInit {
         });
       })
       this.loading = false;
-      this.agGrid.api.setRowData(this.agGrid.rowData);
     });
   }
 
@@ -157,7 +156,14 @@ export class ItemComponent implements OnInit {
         status: "New",
         workItemType: addWorkItemForm.value.inputWorkItemType,
         createdDate: new Date(),
-        modifiedDate: new Date()
+        modifiedDate: new Date(),
+
+        iteration: null,
+        priority: null,
+        originalEstimate: null,
+        remainingHours: null,
+        completedHours: null,
+        userName: null,
       }
       this.workItemService.createWorkItem(workItem);
       this.loading = false;

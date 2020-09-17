@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UIModule } from '../shared/ui/ui.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -25,7 +25,8 @@ import { ViewActionButtonCellTemplate } from './item/cell-templates/view-action-
     ItemRoutingModule,
     AgGridModule.withComponents([]),
     NgbAlertModule,
-    NgbModule
+    NgbModule,
+    NgbTypeaheadModule
   ]
 })
 export class ItemModule {}

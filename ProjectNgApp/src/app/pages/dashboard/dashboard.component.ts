@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
     if(this.currentUser.role.toLowerCase() != 'admin')
     {
         this.projectService.getProjects().subscribe(data => {
+          this.projects = [];
           data.map(e => {
             const projectList = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as Project });
             if (projectList &&  projectList.authors.split(',').indexOf(this.currentUser.firstName + ' ' + this.currentUser.lastName) >= 0) {

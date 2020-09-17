@@ -79,8 +79,8 @@ export class UsersComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.userDataSource = [];
     this.userService.getUsers().subscribe(data => {
+      this.userDataSource = [];
       data.map(e => {
         const userList = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as User });
         if (userList && userList.role.toLowerCase() !== 'admin') {

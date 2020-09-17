@@ -76,6 +76,7 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.workItemService.getWorkItems().subscribe(data => {
+      this.WorkItemList = [];
       data.map(e => {
         const workItem = Object.assign({ uid: e.payload.doc.id }, { ...e.payload.doc.data() as WorkItem });
         // this.rowData = [];
